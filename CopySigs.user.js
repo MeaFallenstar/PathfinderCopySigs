@@ -27,9 +27,10 @@ function copyTable(e) {
         var table = $('.pf-sig-table-primary')[0];
 
         if (navigator.clipboard) {
-            var text = table.innerText.trim();
-            navigator.clipboard.writeText(text).catch(function () { });
-            alert("Signatures Copied To Clipboard");
+            var text = table.innerText;
+            navigator.clipboard.writeText(text)
+                .catch((err) => alert("Error Copying Signatures", err))
+                .then(() => alert("Signatures Copied To Clipboard"));
         };
     } else {
         alert("Please Select a System to Copy Signatures");
